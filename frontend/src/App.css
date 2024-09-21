@@ -1,124 +1,168 @@
-/* General styles */
+/* App.css */
+
 body {
-  background-color: #f0f0f0;
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f4f4f4;
   color: #333;
 }
 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .App-header {
-  background-color: #222;
+  background-color: #0077cc;
+  color: white;
   padding: 20px;
   text-align: center;
-  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.App-header h1 {
-  margin: 0;
-  font-size: 2.5em;
-}
-
-nav ul {
-  display: flex;
-  justify-content: space-between;
-  list-style-type: none;
-  padding: 0;
-  margin: 20px 0;
-}
-
-nav ul li {
-  margin: 0 20px;
-}
-
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.2em;
-  transition: color 0.3s ease-in-out;
-}
-
-nav ul li a:hover {
-  color: #f5a623;
-}
-
-.product-list {
-  padding: 50px;
-  background-color: #fff;
-  max-width: 1200px;
+.logo {
+  max-width: 150px;
   margin: 0 auto;
 }
 
-h2 {
-  font-size: 2em;
-  margin-bottom: 30px;
-  text-align: center;
+nav {
+  margin: 20px 0;
 }
 
-/* Product grid styling */
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+nav ul li button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: color 0.3s;
+}
+
+nav ul li button:hover {
+  color: #ffcc00;
+}
+
+.search-container {
+  margin: 20px 0;
+}
+
+.search-container input {
+  padding: 10px;
+  width: 200px;
+  border: 2px solid #0077cc;
+  border-radius: 5px;
+}
+
+.search-container button {
+  padding: 10px 15px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.search-container button:hover {
+  background-color: #005fa3;
+}
+
+.product-category {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  border-radius: 8px;
+}
+
+.product-category h2 {
+  margin-bottom: 15px;
+}
+
+.product-category nav ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.product-category nav ul li {
+  margin-right: 20px;
+  cursor: pointer;
+  color: #0077cc;
+  transition: color 0.3s;
+}
+
+.product-category nav ul li:hover {
+  color: #ffcc00;
+}
+
+.product-list {
+  padding: 20px;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 30px;
+  gap: 20px;
 }
 
 .product {
-  background-color: #fff;
-  border: 1px solid #ddd;
+  background-color: white;
+  border: 1px solid #eaeaea;
   border-radius: 8px;
-  padding: 20px;
+  padding: 15px;
   text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.product:hover {
-  transform: translateY(-10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
 .product img {
-  width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: cover;
-  margin-bottom: 20px;
+  max-width: 100%;
+  border-radius: 5px;
 }
 
 .product h3 {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-}
-
-.product p {
-  font-size: 1.1em;
-  margin-bottom: 15px;
-  color: #666;
+  margin: 10px 0;
 }
 
 .product button {
-  background-color: #f5a623;
+  background-color: #0077cc;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 1.1em;
+  padding: 10px 15px;
   border-radius: 5px;
-  color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 
 .product button:hover {
-  background-color: #333;
+  background-color: #005fa3;
 }
 
-/* Footer styles */
-footer {
-  background-color: #222;
-  color: #fff;
-  text-align: center;
+.contact-info {
+  background-color: #fff;
   padding: 20px;
-  margin-top: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  border-radius: 8px;
 }
 
-footer p {
-  margin: 0;
-  font-size: 1em;
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #0077cc;
+  color: white;
+  margin-top: auto;
 }
