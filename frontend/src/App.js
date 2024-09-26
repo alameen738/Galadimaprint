@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
 import './App.css';
 
 const products = [
@@ -45,18 +45,58 @@ function Home() {
 }
 
 function LoginPage() {
-  return <h2>Login Form</h2>;
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const storedUser = JSON.parse(localStorage.getItem('user'));
+
+    if (storedUser && storedUser.email === email && storedUser.password === password) {
+      alert('Login successful!');
+      navigate('/'); // Redirect to home after login
+    } else {
+      alert('Invalid email or password');
+    }
+  };
+
+  return (
+    <div className="login-page">
+      <form onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <input
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  );
 }
 
 function SignUpPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle sign-up logic here
-    console.log('Sign Up:', { name, email, password });
+    const userData = { name, email, password };
+    localStorage.setItem('user', JSON.stringify(userData)); // Store user data in local storage
+    alert('Sign Up successful! You can now log in.');
+    navigate('/login'); // Redirect to login page after sign up
   };
 
   return (
