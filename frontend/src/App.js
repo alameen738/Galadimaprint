@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate } from 'react-router-dom';
 import './App.css';
 
 const products = [
@@ -25,15 +25,15 @@ const products = [
   { id: 20, name: 'Lamination Machine', image: '/images/Lamination.jpg', description: 'Lamination machine for preserving documents.', category: 'Others' },
 ];
 
-function ProductList({ filteredProducts }) {
+function ProductList({ products, onAddToCart }) {
   return (
     <div className="product-grid">
-      {filteredProducts.map(product => (
+      {products.map(product => (
         <div key={product.id} className="product">
           <img src={product.image} alt={product.name} />
           <h3>{product.name}</h3>
           <p>{product.description}</p>
-          <button>Add to Cart</button>
+          <button onClick={() => onAddToCart(product)}>Add to Cart</button>
         </div>
       ))}
     </div>
@@ -44,59 +44,47 @@ function Home() {
   return <h2>Welcome to GaladimaPrint!</h2>;
 }
 
-function LoginPage() {
+function LoginPage({ onLogin }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-
-    if (storedUser && storedUser.email === email && storedUser.password === password) {
-      alert('Login successful!');
-      navigate('/'); // Redirect to home after login
-    } else {
-      alert('Invalid email or password');
-    }
+    // Simulate login logic
+    onLogin(email);
   };
 
   return (
-    <div className="login-page">
-      <form onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h2>Login Form</h2>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button type="submit">Login</button>
+    </form>
   );
 }
 
-function SignUpPage() {
+function SignUpPage({ onSignUp }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const userData = { name, email, password };
-    localStorage.setItem('user', JSON.stringify(userData)); // Store user data in local storage
-    alert('Sign Up successful! You can now log in.');
-    navigate('/login'); // Redirect to login page after sign up
+    // Simulate sign-up logic
+    onSignUp({ name, email, password });
   };
 
   return (
@@ -128,27 +116,49 @@ function SignUpPage() {
   );
 }
 
-function ProductsPage() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const filteredProducts = products.filter(product => 
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+function ProductsPage({ onAddToCart }) {
   return (
     <div>
       <h2>Our Products</h2>
-      <input
-        type="text"
-        placeholder="Search..."
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-      />
-      <ProductList filteredProducts={filteredProducts} />
+      <ProductList products={products} onAddToCart={onAddToCart} />
+    </div>
+  );
+}
+
+function Cart({ cartItems }) {
+  return (
+    <div>
+      <h2>Your Cart</h2>
+      {cartItems.length === 0 ? (
+        <p>No items in cart.</p>
+      ) : (
+        <ul>
+          {cartItems.map(item => (
+            <li key={item.id}>{item.name}</li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+
+  const handleLogin = (email) => {
+    console.log('Logged in as:', email); // Replace with real authentication
+    setIsLoggedIn(true);
+  };
+
+  const handleSignUp = (userData) => {
+    console.log('User signed up:', userData); // Replace with real sign-up logic
+  };
+
+  const handleAddToCart = (product) => {
+    setCartItems(prevItems => [...prevItems, product]);
+  };
+
   return (
     <Router>
       <div className="App">
@@ -159,21 +169,24 @@ function App() {
               <li><Link to="/">Home</Link></li>
               <li><Link to="/products">Products</Link></li>
               <li><Link to="/cart">Cart</Link></li>
-              <li><Link to="/login">Login</Link></li>
-              <li><Link to="/signup">Sign Up</Link></li>
+              {isLoggedIn ? (
+                <li><Link to="/">Logout</Link></li>
+              ) : (
+                <li><Link to="/login">Login</Link></li>
+              )}
             </ul>
           </nav>
         </header>
-
         <main>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
+            <Route path="/login" element={<LoginPage onLogin={handleLogin} />} />
+            <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
+            <Route path="/products" element={<ProductsPage onAddToCart={handleAddToCart} />} />
+            <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
-
         <footer>
           <p>&copy; 2024 GaladimaPrint. All rights reserved.</p>
         </footer>

@@ -1,30 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-function ProductList({ products }) {
-  const [cart, setCart] = useState([]);
-
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
-
+function ProductList({ products, isLoggedIn }) {
   return (
-    <div>
-      <div className="product-grid">
-        {products.map(product => (
-          <div key={product.id} className="product">
-            <img src={product.image} alt={product.name} />
-            <h3>{product.name}</h3>
-            <p>{product.description}</p>
-            <button onClick={() => addToCart(product)}>Add to Cart</button>
-          </div>
-        ))}
-      </div>
-      <div className="cart">
-        <h2>Cart</h2>
-        {cart.map((item, index) => (
-          <p key={index}>{item.name}</p>
-        ))}
-      </div>
+    <div className="product-grid">
+      {products.map(product => (
+        <div className="product" key={product.id}>
+          <img src={product.image} alt={product.name} />
+          <h3>{product.name}</h3>
+          <p>{product.description}</p>
+          {isLoggedIn ? (
+            <Link to="/checkout">
+              <button>Add to Cart</button>
+            </Link>
+          ) : (
+            <p>Please log in to purchase.</p>
+          )}
+        </div>
+      ))}
     </div>
   );
 }
