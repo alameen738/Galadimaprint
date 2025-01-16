@@ -1,30 +1,27 @@
-/* App.css */
-
-/* General Styles */
+/* General styles */
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
-  background: #f4f4f4; /* Light background for the body */
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
-/* Header Styles */
-.App-header {
-  background-color: #282c34; /* Dark header background */
-  padding: 20px;
+.App {
   text-align: center;
-  color: white;
 }
 
-.App-header .logo {
-  height: 80px; /* Adjust logo height */
+h1, h2, h3 {
+  color: #333;
 }
 
 nav {
-  margin-top: 10px;
+  background: #333;
+  color: #fff;
+  padding: 10px;
 }
 
 nav ul {
-  list-style: none;
+  list-style-type: none;
   padding: 0;
 }
 
@@ -33,106 +30,101 @@ nav ul li {
   margin: 0 15px;
 }
 
-nav a {
-  color: white;
+nav ul li a {
+  color: #fff;
   text-decoration: none;
-  font-weight: bold;
 }
 
-nav a:hover {
-  text-decoration: underline; /* Underline on hover */
-}
-
-/* Main Styles */
-main {
+/* Header styles */
+.App-header {
+  background-color: #282c34;
   padding: 20px;
 }
 
-h2 {
-  color: #333; /* Dark text color for headings */
+.logo {
+  height: 40px;
 }
 
-/* Product Grid Styles */
+/* Home styles */
+.home {
+  padding: 20px;
+}
+
+/* Product List styles */
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px; /* Space between grid items */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
 }
 
 .product {
-  background-color: white; /* White background for products */
-  border: 1px solid #ccc; /* Light border for products */
-  border-radius: 5px; /* Rounded corners */
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
   padding: 10px;
-  text-align: center;
-  transition: box-shadow 0.3s; /* Smooth shadow transition */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
 }
 
 .product:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow on hover */
+  transform: scale(1.05);
 }
 
-.product img {
-  max-width: 100%; /* Responsive images */
-  height: auto; /* Maintain aspect ratio */
+.product-image {
+  max-width: 100%;
+  height: auto;
 }
 
-.product h3 {
-  color: #007bff; /* Blue color for product names */
+/* Search input styles */
+input[type="text"] {
+  padding: 10px;
+  margin: 20px 0;
+  width: 80%;
+  max-width: 400px;
 }
 
-.product p {
-  font-size: 0.9em;
-  color: #555; /* Dark gray for product descriptions */
-}
-
-/* Form Styles */
-form {
-  background-color: white; /* White background for forms */
-  border: 1px solid #ccc; /* Light border for forms */
-  border-radius: 5px; /* Rounded corners */
+/* Cart styles */
+.cart {
   padding: 20px;
-  margin: 20px auto; /* Center the form */
-  max-width: 400px; /* Limit form width */
 }
 
-form input {
-  width: 100%; /* Full width input fields */
-  padding: 10px;
-  margin: 10px 0; /* Space between inputs */
-  border: 1px solid #ccc; /* Light border for inputs */
-  border-radius: 5px; /* Rounded corners */
+/* Profile styles */
+.profile {
+  padding: 20px;
 }
 
-form button {
-  width: 100%; /* Full width button */
-  padding: 10px;
-  background-color: #007bff; /* Blue button background */
-  color: white; /* White text color */
-  border: none; /* No border */
-  border-radius: 5px; /* Rounded corners */
-  cursor: pointer; /* Pointer cursor on hover */
-  transition: background-color 0.3s; /* Smooth background transition */
+.profile img {
+  border-radius: 50%; /* Makes the image circular */
+  width: 100px; /* Set width */
+  height: 100px; /* Set height */
+  object-fit: cover; /* Ensures the image covers the circle */
+  margin-bottom: 20px;
 }
 
-form button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+/* File input styles */
+input[type="file"] {
+  margin-top: 10px;
 }
 
-/* Footer Styles */
+/* Footer styles */
 footer {
-  text-align: center;
-  padding: 10px 0;
-  background-color: #282c34; /* Dark footer background */
-  color: white; /* White text color */
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
   position: relative;
   bottom: 0;
   width: 100%;
 }
 
-@media (max-width: 768px) {
+/* Responsive styles */
+@media (max-width: 600px) {
   nav ul li {
-      display: block; /* Stack nav items on small screens */
+      display: block;
       margin: 10px 0;
+  }
+
+  .product-grid {
+      grid-template-columns: 1fr;
   }
 }

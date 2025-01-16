@@ -25,12 +25,17 @@ const products = [
   { id: 20, name: 'Lamination Machine', image: '/images/Lamination.jpg', description: 'Lamination machine for preserving documents.', category: 'Others' },
 ];
 
-function ProductList({ products, onAddToCart }) {
+function ProductList({ products, onAddToCart, searchQuery }) {
+  const filteredProducts = products.filter(product => 
+    product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.description.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="product-grid">
-      {products.map(product => (
+      {filteredProducts.map(product => (
         <div key={product.id} className="product">
-          <img src={product.image} alt={product.name} />
+          <img src={product.image} alt={product.name} className="product-image" />
           <h3>{product.name}</h3>
           <p>{product.description}</p>
           <button onClick={() => onAddToCart(product)}>Add to Cart</button>
@@ -41,7 +46,13 @@ function ProductList({ products, onAddToCart }) {
 }
 
 function Home() {
-  return <h2>Welcome to GaladimaPrint!</h2>;
+  return (
+    <div className="home">
+      <h1>Welcome to GaladimaPrint!</h1>
+      <p>Your one-stop shop for all printing needs.</p>
+      <Link to="/products" className="shop-now-button">Shop Now</Link>
+    </div>
+  );
 }
 
 function LoginPage({ onLogin }) {
@@ -50,7 +61,6 @@ function LoginPage({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate login logic
     onLogin(email);
   };
 
@@ -83,7 +93,6 @@ function SignUpPage({ onSignUp }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Simulate sign-up logic
     onSignUp({ name, email, password });
   };
 
@@ -117,10 +126,22 @@ function SignUpPage({ onSignUp }) {
 }
 
 function ProductsPage({ onAddToCart }) {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
   return (
     <div>
       <h2>Our Products</h2>
-      <ProductList products={products} onAddToCart={onAddToCart} />
+      <input 
+        type="text"
+        placeholder="Search products..."
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
+      <ProductList products={products} onAddToCart={onAddToCart} searchQuery={searchQuery} />
     </div>
   );
 }
@@ -133,8 +154,8 @@ function Cart({ cartItems }) {
         <p>No items in cart.</p>
       ) : (
         <ul>
-          {cartItems.map(item => (
-            <li key={item.id}>{item.name}</li>
+          {cartItems.map((item, index) => (
+            <li key={index}>{item.name}</li>
           ))}
         </ul>
       )}
@@ -142,21 +163,49 @@ function Cart({ cartItems }) {
   );
 }
 
+function ProfilePage({ profile, onProfileUpdate }) {
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        onProfileUpdate({ ...profile, profilePicture: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  return (
+    <div className="profile">
+      <h2>Your Profile</h2>
+      <img src={profile.profilePicture || '/images/default-profile.png'} alt={profile.name} className="profile-picture" />
+      <h3>Name: {profile.name}</h3>
+      <p>Email: {profile.email}</p>
+      <input type="file" accept="image/*" onChange={handleImageChange} />
+    </div>
+  );
+}
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartItems, setCartItems] = useState([]);
+  const [userProfile, setUserProfile] = useState({ name: '', email: '', profilePicture: '/images/profile-placeholder.png' });
 
   const handleLogin = (email) => {
-    console.log('Logged in as:', email); // Replace with real authentication
+    setUserProfile({ name: 'User Name', email, profilePicture: '/images/profile-placeholder.png' });
     setIsLoggedIn(true);
   };
 
   const handleSignUp = (userData) => {
-    console.log('User signed up:', userData); // Replace with real sign-up logic
+    console.log('User signed up:', userData);
   };
 
   const handleAddToCart = (product) => {
     setCartItems(prevItems => [...prevItems, product]);
+  };
+
+  const handleProfileUpdate = (updatedProfile) => {
+    setUserProfile(updatedProfile);
   };
 
   return (
@@ -170,7 +219,10 @@ function App() {
               <li><Link to="/products">Products</Link></li>
               <li><Link to="/cart">Cart</Link></li>
               {isLoggedIn ? (
-                <li><Link to="/">Logout</Link></li>
+                <>
+                  <li><Link to="/profile">{userProfile.name}</Link></li>
+                  <li><Link to="/" onClick={() => setIsLoggedIn(false)}>Logout</Link></li>
+                </>
               ) : (
                 <li><Link to="/login">Login</Link></li>
               )}
@@ -184,6 +236,7 @@ function App() {
             <Route path="/signup" element={<SignUpPage onSignUp={handleSignUp} />} />
             <Route path="/products" element={<ProductsPage onAddToCart={handleAddToCart} />} />
             <Route path="/cart" element={<Cart cartItems={cartItems} />} />
+            <Route path="/profile" element={isLoggedIn ? <ProfilePage profile={userProfile} onProfileUpdate={handleProfileUpdate} /> : <Navigate to="/" />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </main>
