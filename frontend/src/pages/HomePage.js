@@ -1,99 +1,144 @@
 import React from "react";
+import Navbar from "../components/Navbar";
 
-// --- Sub-component for service cards ---
-const ServiceCard = ({ number, title, description }) => (
-  <div className="bg-white p-8 rounded-lg shadow-2xl text-center relative flex-1 min-w-[280px]">
-    <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-14 h-14 bg-[#21a049] text-white rounded-full flex items-center justify-center text-xl font-bold border-4 border-white">
+// --- Service Card Component ---
+const ServiceCard = ({ number, title, description, icon }) => (
+  <div className="group bg-white/80 backdrop-blur p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 text-center flex-1 min-w-[280px] relative hover:-translate-y-2">
+    <div className="absolute -top-5 left-6 w-12 h-12 bg-[#21a049] text-white rounded-xl flex items-center justify-center text-lg font-bold shadow-md">
       {number}
     </div>
-    <div className="mt-6 mb-4 flex justify-center">
-      <div className="w-10 h-10 bg-gray-100 rounded flex items-center justify-center">📊</div>
+
+    <div className="mt-8 mb-5 flex justify-center text-3xl">
+      {icon}
     </div>
-    <h3 className="text-xl font-bold text-gray-800 mb-3">{title}</h3>
-    <p className="text-gray-500 text-sm leading-relaxed mb-6">{description}</p>
-    <button className="text-[10px] font-bold tracking-widest text-gray-800 border-b-2 border-black pb-1 hover:text-[#21a049] hover:border-[#21a049] transition-colors">
-      READ MORE
-    </button>
+
+    <h3 className="text-xl font-semibold text-gray-800 mb-3">
+      {title}
+    </h3>
+
+    <p className="text-gray-500 text-sm leading-relaxed mb-6">
+      {description}
+    </p>
+
+    <span className="inline-block text-xs font-semibold tracking-wider text-[#21a049] group-hover:underline cursor-pointer">
+      READ MORE →
+    </span>
   </div>
 );
 
-// --- Main Home Page ---
 export default function HomePage() {
   return (
-    <div className="bg-gray-100 font-sans text-gray-900">
+    <div className="bg-gray-50 text-gray-900">
+
+      {/* Navbar */}
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="relative bg-black text-white min-h-[600px] flex items-center overflow-hidden">
-        <div className="max-w-7xl mx-auto px-10 grid md:grid-cols-2 items-center w-full">
-          <div className="z-10 py-20">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Professional Printing <br /> Made Simple
+      <section id="hero" className="relative pt-32 bg-gradient-to-br from-black via-gray-900 to-black text-white">
+        <div className="max-w-7xl mx-auto px-6 md:px-10 py-20 grid md:grid-cols-2 gap-16 items-center">
+          
+          <div>
+            <span className="inline-block mb-4 px-4 py-1 text-xs font-semibold bg-[#21a049]/10 text-[#21a049] rounded-full">
+              Trusted Printing Partner
+            </span>
+
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
+              Professional Printing,<br /> Made Simple
             </h1>
-            <p className="text-gray-400 max-w-md mb-8 leading-relaxed">
-              GaladimaPrint delivers high-quality printing, branding, and office solutions tailored to your business needs.
+
+            <p className="text-gray-400 max-w-lg mb-10 leading-relaxed">
+              GaladimaPrint delivers premium printing, branding, and office solutions designed to elevate your business identity.
             </p>
+
             <div className="flex gap-4">
-              <button className="bg-[#21a049] hover:bg-green-700 text-white px-6 py-3 rounded font-bold transition-all">
+              <button className="bg-[#21a049] hover:bg-green-700 px-7 py-3 rounded-xl font-semibold transition">
                 Get a Quote
               </button>
-              <button className="bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded font-bold transition-all">
+              <button className="border border-gray-700 hover:border-[#21a049] px-7 py-3 rounded-xl font-semibold transition">
                 Our Services
               </button>
             </div>
           </div>
 
-          {/* Hero Image Placeholder */}
-          <div className="absolute right-0 top-0 h-full w-1/2 hidden md:block">
-            <div className="absolute inset-0 bg-[#21a049] z-0" style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0% 100%)' }}></div>
+          {/* Hero Image */}
+          <div className="hidden md:block relative">
             <img
-              src="/images/hero.jpg" // Replace with your hero image
+              src="/images/Office.jpg" // updated hero image
               alt="Printing Hero"
-              className="absolute inset-0 w-full h-full object-cover z-10"
-              style={{ clipPath: 'polygon(25% 0, 100% 0, 100% 100%, 10% 100%)' }}
+              className="rounded-2xl shadow-2xl object-cover h-[400px] w-full"
             />
           </div>
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-20 max-w-7xl mx-auto px-10 grid md:grid-cols-2 gap-16 items-center">
+      <section id="about" className="py-24 max-w-7xl mx-auto px-6 md:px-10 grid md:grid-cols-2 gap-20 items-center">
         <div className="relative">
-          <img src="/images/about1.jpg" alt="Printing Process" className="rounded-lg shadow-xl w-4/5" />
-          <img src="/images/about2.jpg" alt="Teamwork" className="rounded-lg shadow-2xl w-3/5 absolute -bottom-10 -right-0 border-8 border-white" />
+          <img src="/images/bag1.jpg" alt="Printing Process" className="rounded-3xl shadow-xl w-full" />
+          <img src="/images/bag.jpg" alt="Teamwork" className="rounded-2xl shadow-2xl w-2/3 absolute -bottom-12 -right-8 border-8 border-black" />
         </div>
+
         <div>
           <h2 className="text-4xl font-bold mb-6">A Journey of Quality Printing</h2>
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            We combine state-of-the-art technology and expertise to deliver the best printing solutions for businesses of all sizes.
+          <p className="text-gray-600 leading-relaxed mb-8">
+            We combine modern printing technology with deep industry expertise to deliver consistent, high-impact results.
           </p>
-          <div className="flex gap-10 mb-8">
+
+          <div className="flex gap-12 mb-10">
             <div>
-              <span className="text-3xl font-bold block">10+</span>
-              <span className="text-gray-500 text-sm">Years of Experience</span>
+              <span className="text-4xl font-bold">10+</span>
+              <p className="text-gray-500 text-sm">Years Experience</p>
             </div>
             <div>
-              <span className="text-3xl font-bold block">500+</span>
-              <span className="text-gray-500 text-sm">Happy Clients</span>
+              <span className="text-4xl font-bold">500+</span>
+              <p className="text-gray-500 text-sm">Satisfied Clients</p>
             </div>
           </div>
-          <button className="bg-[#21a049] text-white px-8 py-3 rounded font-bold">About Us</button>
+
+          <button className="bg-[#21a049] hover:bg-green-700 text-white px-8 py-3 rounded-xl font-semibold transition">
+            About Us
+          </button>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="bg-gray-100 pb-20 pt-10">
-        <div className="max-w-7xl mx-auto px-10">
-          <div className="flex flex-wrap gap-8 -mt-24 relative z-20">
-            <ServiceCard number="01" title="High-Quality Printing" description="We provide top-notch printing solutions tailored to your brand and needs." />
-            <ServiceCard number="02" title="Fast Delivery" description="Timely delivery with premium quality standards maintained for every project." />
-            <ServiceCard number="03" title="Custom Branding" description="From business cards to banners, we make your brand stand out." />
+      <section id="services" className="bg-gray-100 py-24">
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold mb-4">Our Core Services</h2>
+            <p className="text-gray-500 max-w-xl mx-auto">
+              Everything you need to print, brand, and grow your business.
+            </p>
           </div>
-          <div className="text-center mt-12">
-            <button className="bg-[#21a049] text-white px-8 py-2 rounded font-semibold">View All Services</button>
+
+          <div className="flex flex-wrap gap-8">
+            <ServiceCard
+              number="01"
+              title="High-Quality Printing"
+              description="Precision printing with premium materials and flawless finishes."
+              icon="🖨️"
+            />
+            <ServiceCard
+              number="02"
+              title="Fast Turnaround"
+              description="Reliable delivery timelines without compromising quality."
+              icon="⚡"
+            />
+            <ServiceCard
+              number="03"
+              title="Custom Branding"
+              description="Unique branding assets that make your business stand out."
+              icon="🎨"
+            />
+          </div>
+
+          <div className="text-center mt-14">
+            <button className="bg-[#21a049] hover:bg-green-700 text-white px-10 py-3 rounded-xl font-semibold transition">
+              View All Services
+            </button>
           </div>
         </div>
       </section>
-
     </div>
   );
 }
