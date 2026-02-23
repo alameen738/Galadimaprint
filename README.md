@@ -1,4 +1,7 @@
-GaladimaPrint
+<img width="1749" height="805" alt="Screenshot (2)" src="https://github.com/user-attachments/assets/62e844de-84b0-4973-8e9c-17383ac3d397" />GaladimaPrint
+<img width="1790" height="836" alt="Screenshot (3)" src="https://github.com/user-attachments/assets/48dbc50d-d96c-42af-b8a2-084d132c313f" />
+<img width="1749" height="785" alt="Screenshot (4)" src="https://github.com/user-attachments/assets/6cb81514-e977-4722-93ca-4ddddd53be3d" />
+
 
 GaladimaPrint is an e-commerce platform offering printing services and office stationery sales in Nigeria. The platform provides a seamless shopping experience, allowing users to browse products, add items to their cart, and securely process payments using Stripe.
 Table of Contents
