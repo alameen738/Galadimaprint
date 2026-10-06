@@ -47,7 +47,7 @@ export default function HomePage() {
             </h1>
 
             <p className="text-gray-400 max-w-lg mb-10 leading-relaxed">
-              GaladimaPrint delivers premium printing, branding, and office solutions designed to elevate your business identity.
+              Galadima Print delivers premium printing, branding, and office solutions designed to elevate your business identity.
             </p>
 
             <div className="flex gap-4">
