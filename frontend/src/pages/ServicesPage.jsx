@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./ServicesPage.css";
 
 const services = [
@@ -7,105 +6,143 @@ const services = [
     number: "01",
     title: "Digital Printing",
     description:
-      "High-quality printing for documents, flyers, brochures, business cards, invitations, and other business materials.",
+      "Flyers, business cards, brochures, invitations and quality document printing.",
+    image:
+      "https://images.unsplash.com/photo-1612815154858-60aa4c59e6b7?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "02",
     title: "Large Format Printing",
     description:
-      "Professional banners, posters, signage, roll-up banners, and other large-format promotional materials.",
+      "Banners, posters, signs, stickers and promotional materials for your business.",
+    image: "/images/large-format-printing.png",
   },
   {
     number: "03",
     title: "Graphic Design",
     description:
-      "Creative and professional designs for logos, flyers, business cards, banners, invitations, and marketing materials.",
+      "Creative designs that communicate your business, event or personal brand.",
+    image:
+      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "04",
     title: "Business Branding",
     description:
-      "Build a strong and consistent brand identity with professionally designed and printed branding materials.",
+      "Professional visual identities, branded materials and promotional designs.",
+    image:
+      "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "05",
     title: "Website Development",
     description:
-      "Modern, responsive websites for businesses, organizations, institutions, and personal brands.",
+      "Modern, responsive websites that give your business a professional online presence.",
+    image:
+      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "06",
     title: "Software Development",
     description:
-      "Custom software solutions designed to simplify business operations and improve productivity.",
+      "Custom software solutions designed around your business operations and needs.",
+    image:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "07",
-    title: "Photocopy & Document Services",
+    title: "Document Services",
     description:
-      "Fast and reliable photocopying, document printing, scanning, binding, and lamination services.",
+      "Photocopying, scanning, binding, lamination and professional document preparation.",
+    image:
+      "https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1200&q=85",
   },
   {
     number: "08",
-    title: "Stationery & Business Materials",
+    title: "Stationery & Materials",
     description:
-      "Professional business cards, letterheads, envelopes, stickers, ID cards, and other office materials.",
+      "Business cards, letterheads, envelopes, paper products and office materials.",
+    image:
+      "https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=85",
   },
 ];
 
 function ServicesPage() {
   return (
     <div className="services-page">
-      {/* Hero */}
+
+      {/* HERO */}
       <section className="services-hero">
         <div className="services-hero-content">
-          <span className="services-label">OUR SERVICES</span>
+          <span className="services-eyebrow">
+            WHAT WE DO
+          </span>
 
           <h1>
-            Professional Services
+            Services that
             <br />
-            <span>Built Around Your Needs.</span>
+            <span>bring ideas to life.</span>
           </h1>
 
           <p>
-            From high-quality printing and branding to modern websites and
-            software solutions, GaladimaPrint provides reliable services for
-            individuals, businesses, and organizations.
+            From professional printing and branding to modern websites
+            and custom software, we provide practical solutions for
+            individuals, organizations and businesses.
           </p>
         </div>
       </section>
 
-      {/* Services */}
+      {/* SERVICES */}
       <section className="services-section">
-        <div className="services-heading">
-          <span className="services-label">WHAT WE OFFER</span>
 
-          <h2>
-            Everything You Need
-            <br />
-            <span>In One Place.</span>
-          </h2>
+        <div className="services-heading">
+          <div>
+            <span className="services-eyebrow">
+              OUR SERVICES
+            </span>
+
+            <h2>
+              See what we
+              <br />
+              <span>can do for you.</span>
+            </h2>
+          </div>
 
           <p>
-            We combine creativity, technology, and professional printing to
-            deliver solutions that help our clients present themselves better.
+            Explore our services and choose the solution that fits
+            your project. Quality, creativity and reliability are
+            at the heart of everything we do.
           </p>
         </div>
 
         <div className="services-grid">
           {services.map((service) => (
-            <div className="service-card" key={service.number}>
-              <div className="service-card-top">
-                <span className="service-number">{service.number}</span>
+            <div
+              className="service-card"
+              key={service.number}
+            >
+              <img
+                src={service.image}
+                alt={service.title}
+                className="service-image"
+              />
+
+              <div className="service-overlay"></div>
+
+              <div className="service-number">
+                {service.number}
               </div>
 
-              <h3>{service.title}</h3>
+              <div className="service-content">
+                <h3>{service.title}</h3>
 
-              <p>{service.description}</p>
+                <p>{service.description}</p>
 
-              <Link to="/contact" className="service-link">
-                Get a Quote <span>→</span>
-              </Link>
+                <span className="service-link">
+                  Learn more
+                  <span>→</span>
+                </span>
+              </div>
             </div>
           ))}
         </div>
@@ -113,21 +150,36 @@ function ServicesPage() {
 
       {/* CTA */}
       <section className="services-cta">
-        <div>
-          <span className="services-label">READY TO START?</span>
 
-          <h2>Let's bring your idea to life.</h2>
+        <div>
+          <span className="services-eyebrow">
+            HAVE A PROJECT IN MIND?
+          </span>
+
+          <h2>
+            Let's build
+            <br />
+            <span>something great.</span>
+          </h2>
 
           <p>
-            Tell us what you need and our team will help you find the right
-            solution.
+            Contact GaladimaPrint today and let's discuss your
+            printing, branding or technology needs.
           </p>
         </div>
 
-        <Link to="/contact" className="services-cta-button">
-          Contact Us <span>→</span>
-        </Link>
+        <a
+          href="https://wa.me/2348109961369"
+          target="_blank"
+          rel="noreferrer"
+          className="services-cta-button"
+        >
+          Start a Conversation
+          <span>→</span>
+        </a>
+
       </section>
+
     </div>
   );
 }

@@ -1,22 +1,317 @@
-/* TABLET */
-@media (max-width: 1100px) {
+/* ========================================
+   SERVICES PAGE
+======================================== */
+
+.services-page {
+  background: #ffffff;
+  color: #111827;
+}
+
+/* ========================================
+   HERO
+======================================== */
+
+.services-hero {
+  padding: 120px 7% 110px;
+  background: #f7f8fa;
+}
+
+.services-hero-content {
+  max-width: 950px;
+}
+
+.services-eyebrow {
+  display: inline-block;
+  margin-bottom: 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: #e11d48;
+}
+
+.services-hero h1 {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 82px);
+  line-height: 1.02;
+  letter-spacing: -3px;
+  font-weight: 800;
+}
+
+.services-hero h1 span {
+  color: #6b7280;
+}
+
+.services-hero p {
+  max-width: 720px;
+  margin-top: 30px;
+  color: #6b7280;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* ========================================
+   SERVICES SECTION
+======================================== */
+
+.services-section {
+  padding: 110px 7%;
+}
+
+.services-heading {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+
+.services-heading h2 {
+  margin: 0;
+  font-size: clamp(40px, 5vw, 60px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.services-heading h2 span {
+  color: #6b7280;
+}
+
+.services-heading p {
+  max-width: 480px;
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.8;
+}
+
+/* ========================================
+   SERVICE GRID
+======================================== */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* ========================================
+   SERVICE CARD
+======================================== */
+
+.service-card {
+  position: relative;
+  height: 430px;
+  overflow: hidden;
+  border-radius: 18px;
+  background: #111827;
+  cursor: pointer;
+}
+
+.service-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+
+  transition:
+    transform 0.6s ease;
+}
+
+.service-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.55) 45%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+}
+
+/* ========================================
+   CARD NUMBER
+======================================== */
+
+.service-number {
+  position: absolute;
+  top: 24px;
+  left: 26px;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+/* ========================================
+   CARD CONTENT
+======================================== */
+
+.service-content {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
+
+  color: #ffffff;
+}
+
+.service-content h3 {
+  margin: 0 0 10px;
+
+  font-size: clamp(25px, 3vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.8px;
+}
+
+.service-content p {
+  max-width: 550px;
+  margin: 0;
+
+  color: #e5e7eb;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+.service-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-top: 18px;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.service-link span {
+  font-size: 18px;
+
+  transition:
+    transform 0.25s ease;
+}
+
+/* ========================================
+   HOVER
+======================================== */
+
+.service-card:hover .service-image {
+  transform: scale(1.06);
+}
+
+.service-card:hover .service-link span {
+  transform: translateX(6px);
+}
+
+/* ========================================
+   CTA
+======================================== */
+
+.services-cta {
+  margin: 0 7% 90px;
+  padding: 65px 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+
+  border-radius: 24px;
+
+  background: #111827;
+  color: #ffffff;
+}
+
+.services-cta .services-eyebrow {
+  color: #fb7185;
+}
+
+.services-cta h2 {
+  margin: 0;
+
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.05;
+  letter-spacing: -2px;
+}
+
+.services-cta h2 span {
+  color: #9ca3af;
+}
+
+.services-cta p {
+  max-width: 550px;
+  margin: 22px 0 0;
+
+  color: #d1d5db;
+  line-height: 1.7;
+}
+
+.services-cta-button {
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 16px 25px;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #111827;
+
+  text-decoration: none;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.services-cta-button:hover {
+  transform: translateY(-3px);
+  background: #f3f4f6;
+}
+
+.services-cta-button span {
+  font-size: 18px;
+}
+
+/* ========================================
+   TABLET
+======================================== */
+
+@media (max-width: 900px) {
+  .services-heading {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
   .services-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
   }
 
   .services-cta {
-    padding: 45px;
+    padding: 55px;
   }
 }
 
-/* MOBILE */
-@media (max-width: 700px) {
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
   .services-hero {
-    padding: 80px 6% 70px;
+    padding: 80px 6% 75px;
   }
 
   .services-hero h1 {
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
   }
 
   .services-hero p {
@@ -27,23 +322,49 @@
     padding: 75px 6%;
   }
 
+  .services-heading {
+    margin-bottom: 45px;
+  }
+
+  .services-heading h2 {
+    letter-spacing: -1px;
+  }
+
   .services-grid {
-    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .service-card {
-    min-height: 260px;
+    height: 390px;
+    border-radius: 14px;
+  }
+
+  .service-content {
+    left: 22px;
+    right: 22px;
+    bottom: 22px;
+  }
+
+  .service-number {
+    top: 20px;
+    left: 22px;
+  }
+
+  .service-content h3 {
+    font-size: 26px;
   }
 
   .services-cta {
     margin: 0 6% 60px;
     padding: 40px 28px;
+
     flex-direction: column;
     align-items: flex-start;
   }
 
   .services-cta-button {
     width: 100%;
-    text-align: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
 }
