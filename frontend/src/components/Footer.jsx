@@ -1,16 +1,23 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const mapEmbedUrl =
+    "https://maps.google.com/maps?q=Galadima%20Printing%20Press%2C%20Sabon%20Titi%2C%20City%20Ice%2C%20Gwale%2C%20Kano%20700321%2C%20Kano&output=embed";
+
+  const directionsUrl =
+    "https://maps.app.goo.gl/PH4poXxbdPKaAGQ2A?g_st=am";
+
   return (
     <footer className="mt-20 bg-gray-950 text-gray-300">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 md:grid-cols-3 md:px-10">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 sm:grid-cols-2 md:grid-cols-4 md:px-10">
 
-        {/* About GaladimaPrint */}
+        {/* About */}
         <div>
-          <Link to="/" className="inline-block mb-4">
+          <Link to="/" className="mb-4 inline-block">
             <h2 className="text-2xl font-extrabold tracking-tight text-white">
               Galadima<span className="text-[#21a049]">Print</span>
             </h2>
@@ -73,7 +80,7 @@ const Footer = () => {
 
             <li>
               <a
-                href="/#contact"
+                href="/#footer-contact"
                 className="transition-colors hover:text-[#21a049]"
               >
                 Contact Us
@@ -83,16 +90,17 @@ const Footer = () => {
         </div>
 
         {/* Contact Information */}
-        <div id="footer-contact">
+        <div id="footer-contact" className="scroll-mt-24">
           <h2 className="mb-5 text-lg font-bold text-white">
             Contact Us
           </h2>
 
           <p className="mb-4 text-sm leading-relaxed text-gray-400">
-            Have a printing or branding project? Get in touch with us.
+            Contact us for printing, photocopying, business cards,
+            banners, and branding services.
           </p>
 
-          {/* First Phone Number */}
+          {/* Phone Number 1 */}
           <a
             href="tel:+2348068989600"
             className="mb-4 flex items-center gap-3 text-sm transition-colors hover:text-[#21a049]"
@@ -114,7 +122,7 @@ const Footer = () => {
             </span>
           </a>
 
-          {/* Second Phone Number */}
+          {/* Phone Number 2 */}
           <a
             href="tel:+2348109961369"
             className="mb-5 flex items-center gap-3 text-sm transition-colors hover:text-[#21a049]"
@@ -146,10 +154,47 @@ const Footer = () => {
             <span aria-hidden="true">💬</span>
             Chat on WhatsApp
           </a>
+        </div>
 
-          <p className="mt-4 text-xs text-gray-500">
-            Kano, Nigeria
+        {/* Google Maps Location */}
+        <div>
+          <h2 className="mb-5 text-lg font-bold text-white">
+            Find Our Location
+          </h2>
+
+          <p className="mb-4 text-sm leading-relaxed text-gray-400">
+            Galadima Printing Press
+            <br />
+            Sabon Titi, City Ice
+            <br />
+            Gwale, Kano 700321, Kano, Nigeria
           </p>
+
+          {/* Embedded Google Map */}
+          <div className="mb-4 overflow-hidden rounded-xl border border-gray-800 bg-gray-900">
+            <iframe
+              title="Galadima Printing Press location on Google Maps"
+              src={mapEmbedUrl}
+              width="100%"
+              height="220"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
+
+          {/* Directions */}
+          <a
+            href={directionsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-green-400 transition hover:text-green-300"
+          >
+            <span aria-hidden="true">📍</span>
+            Get Directions
+            <span aria-hidden="true">→</span>
+          </a>
         </div>
       </div>
 
