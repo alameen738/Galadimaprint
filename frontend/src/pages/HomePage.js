@@ -121,25 +121,6 @@ function ArrowIcon() {
   );
 }
 
-function CheckIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      className="h-5 w-5 shrink-0 text-[#21a049]"
-    >
-      <path
-        d="m5 12 4 4L19 6"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
 function SectionHeading({
   eyebrow,
   title,
@@ -204,7 +185,7 @@ function PortfolioCard({ item }) {
         </p>
 
         <a
-          href={`${WHATSAPP_URL}`}
+          href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#21a049] transition hover:text-green-800"
